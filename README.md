@@ -2,86 +2,43 @@
 
 This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
 
-## Assignment Overview
+1. How to Install and Run the Project
+Prerequisites: Node.js, npm/yarn, MongoDB (Connection URI).
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
+Setup:
 
-## Project Structure
+git clone [repo-url]
 
-```
-mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
-```
+Create .env file in the server folder with your MONGO_URI.
 
-## Getting Started
+cd server and run npm install.
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
+cd ../client and run npm install.
 
-## Files Included
+Run:
 
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
+Start Server: cd server then npm run dev (or equivalent).
 
-## Requirements
+Start Client: cd client then npm start.
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Basic understanding of testing concepts
+2. Testing Approach and Coverage
+Approach: "We utilized the Test Pyramid approach, focusing on low-level unit tests for stability and integration tests for system confidence."
 
-## Testing Tools
+Backend (Jest/Supertest): API routes were tested by mocking the Mongoose DB to isolate the controller and route logic. Validation helpers were unit-tested.
 
-- Jest: JavaScript testing framework
-- React Testing Library: Testing utilities for React
-- Supertest: HTTP assertions for API testing
-- Cypress/Playwright: End-to-end testing framework
-- MongoDB Memory Server: In-memory MongoDB for testing
+Frontend (RTL): Components were tested for correct rendering, user interaction (fireEvent), and state changes. jest-fetch-mock was used to simulate API success/failure for integration tests.
 
-## Submission
+How to Run Tests:
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+Backend: cd server && npm test
 
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
+Frontend: cd client && npm test
 
-## Resources
+3. Debugging Techniques Used
+Console Logging: Used extensively in both client and server for simple variable inspection and execution flow confirmation.
 
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
-- [Supertest Documentation](https://github.com/visionmedia/supertest)
-- [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+Chrome DevTools: Used for monitoring the client-server interaction (Network Tab) and debugging component state issues (Components Tab).
+
+Node.js Inspector: The primary tool for complex server-side debugging, allowing for precise control over code execution via breakpoints to catch issues like unhandled promises or incorrect middleware behavior.
+
+Error Boundary: Implemented in the client to prevent the "white screen of death" by gracefully catching rendering errors and displaying a helpful fallback UI. 
